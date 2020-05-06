@@ -10,9 +10,9 @@ This extensions creates redirects so that Flarum can only be accessed via the ur
 > **Second note:** if your host supports configuring redirects (via Apache Rewrites or Nginx server rules for example), I recommend using that instead of an extension for better performance.
 > If those features are not available or if you don't have the technical knowledge to use them, then this extension is for you!
 
-## Installation
+> **Third note:** this extension does not work with Flarum installs in subfolders.
 
-Use [Bazaar](https://discuss.flarum.org/d/5151-flagrow-bazaar-the-extension-marketplace) or install manually:
+## Installation
 
 ```bash
 composer require migratetoflarum/canonical
@@ -21,7 +21,7 @@ composer require migratetoflarum/canonical
 ## Updating
 
 ```bash
-composer update migratetoflarum/canonical
+composer require migratetoflarum/canonical
 php flarum cache:clear
 ```
 
