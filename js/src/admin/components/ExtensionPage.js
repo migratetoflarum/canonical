@@ -1,5 +1,5 @@
 import app from 'flarum/app';
-import SettingsModal from 'flarum/components/SettingsModal';
+import BaseExtensionPage from 'flarum/components/ExtensionPage';
 import Select from 'flarum/components/Select';
 
 const settingsPrefix = 'migratetoflarum-canonical.';
@@ -13,12 +13,8 @@ const STEPS = [
 
 /* global m */
 
-export default class RedirectsSettingsModal extends SettingsModal {
-    title() {
-        return app.translator.trans(translationPrefix + 'title');
-    }
-
-    form() {
+export default class ExtensionPage extends BaseExtensionPage {
+    content() {
         let step = -1;
 
         const baseUrl = app.forum.attribute('baseUrl');
@@ -33,7 +29,7 @@ export default class RedirectsSettingsModal extends SettingsModal {
 
         const disabled = this.setting(settingsPrefix + 'status')() < 301 && step < 0;
 
-        return [
+        return m('.ExtensionPage-settings', m('.container', [
             m('h4', app.translator.trans(translationPrefix + 'step.how_to')),
             m('ul', [
                 m('li', [
@@ -70,6 +66,7 @@ export default class RedirectsSettingsModal extends SettingsModal {
                 }),
                 disabled ? m('.helpText', app.translator.trans(translationPrefix + 'field.wrong_url')) : null,
             ]),
-        ];
+            m('.Form-group', this.submitButton()),
+        ]));
     }
 }
